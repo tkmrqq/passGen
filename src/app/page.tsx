@@ -59,9 +59,31 @@ export default function Home() {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(password);
-    toast.success("Copied to clipboard!");
+  const copyToClipboard = async () => {
+    try {
+      // Проверяем доступность API
+      if (typeof window === 'undefined' || !navigator.clipboard) {
+        throw new Error("Clipboard API not available");
+      }
+
+      await navigator.clipboard.writeText(password);
+      toast.success("Password copied to clipboard!");
+    } catch (err) {
+      console.error('Failed to copy:', err);
+
+      // Fallback для старых браузеров
+      if (document.queryCommandSupported?.('copy')) {
+        const textArea = document.createElement('textarea');
+        textArea.value = password;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        toast.success("Password copied!");
+      } else {
+        toast.error("Failed to copy password");
+      }
+    }
   };
 
   return (
