@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PiGithubLogoLight } from "react-icons/pi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from "next/image";
 
 export default function Home() {
   interface PasswordOptions {
@@ -66,6 +67,7 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full max-w-md">
+        <Image src={'/1.webp'} alt="billy" width={1000} height={100}></Image>
         <h1 className="text-4xl font-extrabold">PASSWORD GENERATOR</h1>
 
         {/* Поле с паролем */}
@@ -80,7 +82,7 @@ export default function Home() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
+            stroke="black"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
